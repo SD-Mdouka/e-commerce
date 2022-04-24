@@ -1,5 +1,5 @@
 
-                                                            @extends('layouts.app')
+                                                        @extends('layouts.appadmin')
 
                                                             @section('content')
                                                             <div class="container">
@@ -9,48 +9,37 @@
                                                                     </div>
                                                                     <div class="col-md-8">
                                                                         <div class="card p-3">
-                                                                            <h3 class="card-title">Update {{ $product->title }}</h3>
+                                                                            <h3 class="card-title">Add new product</h3>
                                                                             <div class="card-body">
-                                                                                <form method="post" action="{{ route("products.update",$product->slug) }}" enctype="multipart/form-data">
+                                                                                <form method="post" action="{{ route("products.store") }}" enctype="multipart/form-data">
                                                                                     @csrf
-                                                                                    @method("PUT")
                                                                                     <div class="form-group">
                                                                                         <input type="text"
                                                                                         name="title"
-                                                                                        placeholder="Titre"
-                                                                                        value="{{ $product->title }}"
+                                                                                        placeholder="Title"
                                                                                         class="form-control">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <textarea name="description" placeholder="Description"
-                                                                                            cols="30" rows="10" class="form-control">{{ $product->description }}</textarea>
+                                                                                            cols="30" rows="10" class="form-control"></textarea>
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <input type="number"
                                                                                             name="price"
-                                                                                            placeholder="Prix"
-                                                                                            value="{{ $product->price }}"
+                                                                                            placeholder="Price"
                                                                                             class="form-control">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <input type="number"
                                                                                         name="old_price"
-                                                                                        placeholder="Prix Ancien"
-                                                                                        value="{{ $product->old_price }}"
+                                                                                        placeholder="Old Price"
                                                                                         class="form-control">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <input type="number"
                                                                                         name="inStock"
-                                                                                        placeholder="Quantité en stock"
-                                                                                        value="{{ $product->inStock }}"
+                                                                                        placeholder="In Stock"
                                                                                         class="form-control">
-                                                                                    </div>
-                                                                                    <div class="form-group">
-                                                                                        <img src="{{ asset($product->image) }}"
-                                                                                        width="200"
-                                                                                        height="200"
-                                                                                        alt="{{ $product->title }}">
                                                                                     </div>
                                                                                     <div class="form-group">
                                                                                         <input type="file"
@@ -60,12 +49,10 @@
                                                                                     <div class="form-group">
                                                                                         <select name="category_id" class="form-control">
                                                                                             <option value="" selected disabled>
-                                                                                                Choisir une catégorie
+                                                                                                Choose a category
                                                                                             </option>
                                                                                             @foreach ($categories as $category)
-                                                                                                <option
-                                                                                                {{ $product->category_id === $category->id ? "selected" : "" }}
-                                                                                                value="{{ $category->id }}">
+                                                                                                <option value="{{ $category->id }}">
                                                                                                     {{ $category->title }}
                                                                                                 </option>
                                                                                             @endforeach

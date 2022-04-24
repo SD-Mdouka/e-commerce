@@ -13,53 +13,49 @@
                                                                                 <tr>
                                                                                     <th>Id</th>
                                                                                     <th>Client</th>
-                                                                                    <th>Product</th>
-                                                                                    <th>Qty</th>
-                                                                                    <th>Price</th>
-                                                                                    <th>Total</th>
-                                                                                    <th>Paid</th>
-                                                                                    <th>Delivered</th>
+                                                                                    <th>Email</th>
+                                                                                    <th>City</th>
+                                                                                    <th>Date Create</th>
+                                                                                    <th>Activation</th>
                                                                                     <th></th>
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
-                                                                                @foreach ($orders as $order)
+                                                                                @foreach ($users as $user)
                                                                                     <tr>
-                                                                                        <td>{{ $order->id }}</td>
-                                                                                        <td>{{ $order->user->name }}</td>
-                                                                                        <td>{{ $order->product_name }}</td>
-                                                                                        <td>{{ $order->qty }}</td>
-                                                                                        <td>{{ $order->price }} $</td>
-                                                                                        <td>{{ $order->total }} $</td>
+                                                                                        <td>{{ $user->id }}</td>
+                                                                                        <td>{{ $user->name }}</td>
+                                                                                        <td>{{ $user->email }}</td>
                                                                                         <td>
-                                                                                            @if($order->paid)
-                                                                                                <i class="fa fa-check text-success"></i>
-                                                                                            @else
-                                                                                                <i class="fa fa-times text-danger"></i>
-                                                                                            @endif
+                                                                                            @if($user->city)
+                                                                                            {{ $user->city }}
+                                                                                        @else
+                                                                                            <span class="text-danger"> Not available</span>
+                                                                                        @endif
                                                                                         </td>
+                                                                                        <td>{{ $user->created_at }}</td>
                                                                                         <td>
-                                                                                            @if($order->delivered)
+                                                                                            @if($user->active)
                                                                                                 <i class="fa fa-check text-success"></i>
                                                                                             @else
                                                                                                 <i class="fa fa-times text-danger"></i>
                                                                                             @endif
                                                                                         </td>
                                                                                         <td class="d-flex flex-row justify-content-center align-items-center">
-                                                                                            <form method="POST" action="{{ route("orders.update",$order->id) }}">
+                                                                                            <form method="POST" action="{{ route("users.update",$user->id) }}">
                                                                                                 @csrf
                                                                                                 @method("PUT")
                                                                                                 <button class="btn btn-sm btn-success">
                                                                                                     <i class="fa fa-check"></i>
                                                                                                 </button>
                                                                                             </form>
-                                                                                            <form id="{{ $order->id }}" method="POST" action="{{ route("orders.destroy",$order->id) }}">
+                                                                                            <form id="{{ $user->id }}" method="POST" action="{{ route("users.destroy",$user->id) }}">
                                                                                                 @csrf
                                                                                                 @method("DELETE")
                                                                                                 <button
                                                                                                 onclick="event.preventDefault();
-                                                                                                   if(confirm('Do you really want to delete the order {{ $order->id  }} ?'))
-                                                                                                    document.getElementById({{ $order->id }}).submit();
+                                                                                                   if(confirm('Do you really want to delete the client {{ $user->id  }} ?'))
+                                                                                                    document.getElementById({{ $user->id }}).submit();
                                                                                                 "
                                                                                                 class="btn btn-sm btn-danger">
                                                                                                     <i class="fa fa-trash"></i>
@@ -72,7 +68,7 @@
                                                                         </table>
                                                                         <hr>
                                                                         <div class="justify-content-center d-flex">
-                                                                            {{ $orders->links() }}
+                                                                            {{ $users->links() }}
                                                                         </div>
                                                                     </div>
                                                                 </div>

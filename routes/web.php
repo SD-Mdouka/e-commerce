@@ -42,10 +42,14 @@ Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/login', 'AdminController@showAdminLoginForm')->name('admin.login');
 Route::post('/admin/login', 'AdminController@adminLogin')->name('admin.login');
 Route::get('/admin/logout', 'AdminController@adminLogout')->name('admin.logout');
-Route::get('/admin/productsauth', 'AdminController@getProducts')->name('admin.products');
+Route::get('/admin/products_auth', 'AdminController@getProducts')->name('admin.products');
 Route::get('/admin/orders', 'AdminController@getOrders')->name('admin.orders');
+Route::get('/admin/categories', 'AdminController@getCategories')->name('admin.categories');
+Route::get('/admin/users', 'AdminController@getUsers')->name('admin.users');
 //orders routes
 Route::resource('orders', 'OrderController');
-
-
+//categories routes
+Route::resource('categories', 'CategoryController');
+//users route
+Route::resource('users', 'UserController');
 

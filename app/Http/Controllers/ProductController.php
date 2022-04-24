@@ -38,7 +38,7 @@ class ProductController extends Controller
     public function create()
     {
         //
-        return view("admin.productsauth.create")->with([
+        return view("admin.products_auth.create")->with([
             "categories" => Category::all()
         ]);
     }
@@ -105,7 +105,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
-        return view("admin.productsauth.edit")->with([
+        return view("admin.products_auth.edit")->with([
             "product" => $product,
             "categories" => Category::all()
         ]);
@@ -151,7 +151,7 @@ class ProductController extends Controller
             "category_id" => $request->category_id,
             "image" =>  $product->image,
         ]);
-        return redirect()->route("admin.productsauth")
+        return redirect()->route("admin.products_auth")
             ->withSuccess("Product updated");
     }
 
@@ -169,7 +169,7 @@ class ProductController extends Controller
             unlink($image_path);
         }
         $product->delete();
-        return redirect()->route("admin.productsauth")
+        return redirect()->route("admin.products_auth")
             ->withSuccess("Product deleted");
     }
 }

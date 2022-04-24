@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Order;
 use App\Product;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,7 +22,9 @@ class AdminController extends Controller
     {
         return view("admin.index")->with([
             "products" => Product::all(),
-            "orders" => Order::all()
+            "orders" => Order::all(),
+            "categories" => Category::all(),
+            "users" =>User::all()
         ]);
     }
 
@@ -65,15 +69,26 @@ class AdminController extends Controller
 
     public function getProducts()
     {
-        return view("admin.productsauth.index")->with([
+        return view("admin.products_auth.index")->with([
             "products" => Product::latest()->paginate(5)
         ]);
     }
-
     public function getOrders()
     {
         return view("admin.orders.index")->with([
             "orders" => Order::latest()->paginate(5)
+        ]);
+    }
+    public function getCategories()
+    {
+        return view("admin.categories.index")->with([
+            "categories" => Category::latest()->paginate(5)
+        ]);
+    }
+    public function getUsers()
+    {
+        return view("admin.users.index")->with([
+            "users" => User::latest()->paginate(5)
         ]);
     }
 }

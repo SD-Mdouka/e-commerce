@@ -21,7 +21,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Contracts\Support\
      */
     public function index()
     {
@@ -34,7 +34,7 @@ class HomeController extends Controller
     /**
      * Show products by category.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Contracts\Support\
      */
     public function getProductByCategory(Category $category)
     {

@@ -11,10 +11,6 @@ use Srmklive\PayPal\Services\ExpressCheckout;
 class PaypalPaymentController extends Controller
 {
     //
-    public function earnings_manage_discussion($id){
-        $data = User::find($id)->with('owner');
-        return $data;
-    }
     public function __construct()
     {
         $this->middleware("auth");

@@ -12,6 +12,12 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware("auth:admin")->except([
+            "index", "show"
+        ]);
+    }
     public function index()
     {
         return view("admin.orders.index")->with([
@@ -21,7 +27,6 @@ class OrderController extends Controller
     public function update(Request $request, Order $order)
     {
         //
-        $request->validate();
         $order->update([
             "delivered" => 1
         ]);
