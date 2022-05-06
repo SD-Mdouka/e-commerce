@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
 
 class ForgotPasswordController extends Controller
 {
@@ -19,4 +20,19 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+     protected function sendResetLinkResponse(Request $request, $response)
+    {
+         return redirect("/login")
+                ->with(['errorLink' => 'Activate your account
+                    <a href="' . route('code.resend', $request->email) . '">
+                        Resend activation link
+                    <a>
+                '])->withEmail($request->email);
+    }
+
+    protected function sendResetLinkFailedResponse(Request $request, $response)
+    {
+        return response(['message' => $response], 422);
+    }
+        protected $redirectTo = "/login";
 }

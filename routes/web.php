@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+/*******************auth************************* */
 Auth::routes();
 /*******************Home************************* */
 Route::get('/', 'HomeController@index')->name('home');
@@ -52,4 +52,3 @@ Route::resource('orders', 'OrderController');
 Route::resource('categories', 'CategoryController');
 //users route
 Route::resource('users', 'UserController');
-

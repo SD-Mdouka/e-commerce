@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
@@ -26,5 +27,16 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = "/";
+    protected function sendResetResponse(Request $request, $response)
+    {
+       // return response(['message' => $request],200);
+         return redirect("/login");
+    }
+
+    protected function sendResetFailedResponse(Request $request, $response)
+    {
+        return response(['error' => $response], 422);
+
+    }
+        protected $redirectTo = "/login";
 }
